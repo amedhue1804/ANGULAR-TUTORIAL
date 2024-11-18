@@ -25,33 +25,33 @@ export class TaskListComponent {
   TaskPriority = TaskPriority;
   TaskStatus = TaskStatus;
 
-  increasePriority(task: any) {
+  increasePriority(task: Task) {
     if (task.priority === TaskPriority.LOW) task.priority = TaskPriority.MEDIUM;
     else if (task.priority === TaskPriority.MEDIUM) task.priority = TaskPriority.HIGH;
   }
   
-  decreasePriority(task: any) {
+  decreasePriority(task: Task) {
     if (task.priority === TaskPriority.HIGH) task.priority = TaskPriority.MEDIUM;
     else if (task.priority === TaskPriority.MEDIUM) task.priority = TaskPriority.LOW;
   }
   
-  startTask(task: any) {
+  startTask(task: Task) {
     task.status = TaskStatus.IN_PROGRESS;
   }
   
-  completeTask(task: any) {
+  completeTask(task: Task) {
     task.status = TaskStatus.COMPLETED;
   }
   
-  resetTask(task: any) {
+  resetTask(task: Task) {
     task.status = TaskStatus.PENDING;
   }
 
-  editTask(task: any) {
+  editTask(task: Task) {
     console.log('Editando tarea', task);
   }
   
-  deleteTask(task: any) {
+  deleteTask(task: Task) {
     task.isDelete = true; 
   }
 
