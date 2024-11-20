@@ -19,14 +19,17 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      
       - name: Setup nodejs
         uses: actions/setup-node@v4.1.0
+        
       - name: Install dependencies
         run: npm install
+        
       - name: Build Angular APP
         run: npm run build:prod
+        
       - name: Deploy Github pages
-      
         uses: crazy-max/ghaction-github-pages@v4.1.0
         with:
           build_dir: dist/angular-ci/browser
