@@ -26,6 +26,7 @@ jobs:
       - name: Build Angular APP
       - run: npm run build:prod
       - name: Deploy Github pages
+      
       - uses: crazy-max/ghaction-github-pages@v4.1.0
         with:
           build_dir: dist/angular-ci/browser
