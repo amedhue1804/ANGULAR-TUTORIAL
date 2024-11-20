@@ -54,5 +54,4 @@ export class TaskListComponent {
   deleteTask(task: Task) {
     task.isDelete = true; 
   }
-
 }

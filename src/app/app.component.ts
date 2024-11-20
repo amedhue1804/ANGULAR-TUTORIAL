@@ -5,16 +5,25 @@ import { LoginComponent } from "./components/auth/login/login.component";
 import { SiginComponent } from "./components/auth/sign/sign.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { TaskListComponent } from "./components/task/tasklist/tasklist.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, TaskListComponent],
+  imports: [RouterOutlet, NavbarComponent,FormsModule, FooterComponent, TaskListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
-  nombre = 'Adrian Medina Huerta';
-}
 
-
+  title='angular-tutorial';
+  imagenAleatoria:string="";
+  nombre="";
+  url=""
+  muestraImagen(){
+   let random:number = Math.trunc((Math.random()*1000)+100);
+   this.imagenAleatoria = "https://picsum.photos/200/300?random"+random
+  }
+  
+  }
