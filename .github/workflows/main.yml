@@ -28,19 +28,10 @@ jobs:
         
       - name: Build Angular APP
         run: npm run build:prod
-      
-      - name: Limpiar carpeta de dist
-        run: rm -rf dist
-        
-      - name: Construir aplicación Angular
-        run: npx ng build --configuration production
-        
-      - name: Depurar salida del build
-        run: ls -R dist
         
       - name: Deploy Github pages
         uses: crazy-max/ghaction-github-pages@v4.1.0
         with:
-          build_dir: dist/angular-ci/browser
+          build_dir: dist/angular-tutorial/browser
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
