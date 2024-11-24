@@ -1,98 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Prioridad</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Fecha Expiración</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let task of taskList">
-            <ng-container *ngIf="!task.isDelete">
-              <th scope="row">{{ task.id }}</th>
-              <td>{{ task.name }}</td>
-              <td>{{ task.description }}</td>
-              <td 
-                [ngClass]="{
-                  'table-danger': task.priority === TaskPriority.HIGH,
-                  'table-warning': task.priority === TaskPriority.MEDIUM,
-                  'table-success': task.priority === TaskPriority.LOW
-                }"
-                [ngSwitch]="task.priority">
-                <i 
-                  class="bi bi-arrow-up-circle-fill"
-                  *ngIf="task.priority === TaskPriority.LOW && task.status !== TaskStatus.COMPLETED"
-                  (click)="increasePriority(task)">
-                </i>
-                <i 
-                  class="bi bi-arrow-down-circle-fill"
-                  *ngIf="task.priority === TaskPriority.HIGH && task.status !== TaskStatus.COMPLETED"
-                  (click)="decreasePriority(task)">
-                </i>
-                <i 
-                  class="bi bi-arrow-up-circle-fill"
-                  *ngIf="task.priority === TaskPriority.MEDIUM && task.status !== TaskStatus.COMPLETED"
-                  (click)="increasePriority(task)">
-                </i>
-                <i 
-                  class="bi bi-arrow-down-circle-fill"
-                  *ngIf="task.priority === TaskPriority.MEDIUM && task.status !== TaskStatus.COMPLETED"
-                  (click)="decreasePriority(task)">
-                </i>
-                <span *ngSwitchCase="TaskPriority.HIGH">Alta</span>
-                <span *ngSwitchCase="TaskPriority.MEDIUM">Media</span>
-                <span *ngSwitchCase="TaskPriority.LOW">Baja</span>
-                <span *ngSwitchDefault>Otra</span> 
-              </td>   
-              <td 
-                [ngClass]="{
-                  'table-success': task.status === TaskStatus.COMPLETED,
-                  'table-warning': task.status === TaskStatus.IN_PROGRESS,
-                  'table-danger': task.status === TaskStatus.PENDING
-                }"
-                [ngSwitch]="task.status">
-                <i 
-                class="bi bi-play-fill"
-                *ngIf="task.status === TaskStatus.PENDING"
-                (click)="startTask(task)">
-              </i>
-              <i 
-                class="bi bi-check-lg"
-                *ngIf="task.status === TaskStatus.IN_PROGRESS"
-                (click)="completeTask(task)">
-              </i>
-              <i 
-                class="bi bi-arrow-return-right"
-                *ngIf="task.status === TaskStatus.COMPLETED"
-                (click)="resetTask(task)">
-              </i>
-                <span *ngSwitchCase="TaskStatus.COMPLETED">Completado</span>
-                <span *ngSwitchCase="TaskStatus.IN_PROGRESS">En progreso</span>
-                <span *ngSwitchCase="TaskStatus.PENDING">Pendiente</span>
-                <span *ngSwitchDefault>Otra</span>
-          </td>
-              <td>{{ task.fechaExpiracion}}</td>
-              <td>
-                <i 
-                  class="bi bi-pencil-square text-black"
-                  (click)="editTask(task)">
-                </i>
-                <i 
-                  class="bi bi-trash text-black"
-                  (click)="deleteTask(task)">
-                </i>
-              </td>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
+      <h3>Listado de Tareas</h3>
+    </div>
+    <div class="col-md-12">
+      
+      <ng-container *ngFor="let task of taskList">
+        <app-taskresume *ngIf="task.isDelete != true" [taskinput]="task" (eventTaskModify)="deleteTask($event)"
+        
+        ></app-taskresume>
+      </ng-container>
+
     </div>
   </div>
 </div>

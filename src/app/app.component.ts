@@ -6,11 +6,12 @@ import { SiginComponent } from "./components/auth/sign/sign.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { TaskListComponent } from "./components/task/tasklist/tasklist.component";
 import { FormsModule } from '@angular/forms';
+import { TaskresumeComponent } from "./components/task/taskresume/resume.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent,FormsModule, FooterComponent, TaskListComponent],
+  imports: [RouterOutlet, NavbarComponent, FormsModule, FooterComponent, TaskListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Task, TaskPriority, TaskStatus } from '../../../models/task.model';
 import { CommonModule } from '@angular/common';
-
+import { TaskresumeComponent } from "../taskresume/resume.component";
 @Component({
   selector: 'app-tasklist',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TaskresumeComponent],
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css'
 })
@@ -24,34 +24,32 @@ export class TaskListComponent {
   ];
   TaskPriority = TaskPriority;
   TaskStatus = TaskStatus;
-
-  increasePriority(task: Task) {
+  increasePriority(task: any) {
     if (task.priority === TaskPriority.LOW) task.priority = TaskPriority.MEDIUM;
     else if (task.priority === TaskPriority.MEDIUM) task.priority = TaskPriority.HIGH;
   }
   
-  decreasePriority(task: Task) {
+  decreasePriority(task: any) {
     if (task.priority === TaskPriority.HIGH) task.priority = TaskPriority.MEDIUM;
     else if (task.priority === TaskPriority.MEDIUM) task.priority = TaskPriority.LOW;
   }
   
-  startTask(task: Task) {
+  startTask(task: any) {
     task.status = TaskStatus.IN_PROGRESS;
   }
   
-  completeTask(task: Task) {
+  completeTask(task: any) {
     task.status = TaskStatus.COMPLETED;
   }
   
-  resetTask(task: Task) {
+  resetTask(task: any) {
     task.status = TaskStatus.PENDING;
   }
-
-  editTask(task: Task) {
+  editTask(task: any) {
     console.log('Editando tarea', task);
   }
   
-  deleteTask(task: Task) {
+  deleteTask(task: any) {
     task.isDelete = true; 
   }
 }

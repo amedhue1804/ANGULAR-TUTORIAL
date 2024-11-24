@@ -42,7 +42,17 @@ export class Task {
         return text;
     }
 
-    getTextoPrioridad():string{
+    getStatusText():string{
+        let text="";
+        switch(this.status){
+            case "IP": text="En proceso";break;
+            case "C": text="Realizada"; break;
+            case "P": text="Pendiente";break;
+        }
+        return text;
+    }
+
+    getPriorityText():string{
         switch(this.priority){
             case "H": return "Alta";break;
             case "M": return "Media"; break;
@@ -50,22 +60,38 @@ export class Task {
             default: return "";
         }
     }
-
-    getPriorityColor(){
+    
+    raisePriority(){
         switch(this.priority){
-            case "H": return "yellow";break;
-            case "M": return "red"; break;
-            case "L": return "black";break;
-            default: return "";
-        }
-    }
-
-    getStatusColor(){
-        switch(this.status){
-            case "IP": "yellow";break;
-            case "C": "red"; break;
-            case "P":"black";break;
+          case TaskPriority.LOW: this.priority=TaskPriority.MEDIUM;break;
+          case TaskPriority.MEDIUM: this.priority=TaskPriority.HIGH;break;
         }
     }
     
+    lowerPriority(){
+        switch(this.priority){
+            case TaskPriority.MEDIUM: this.priority=TaskPriority.LOW;break;
+            case TaskPriority.HIGH: this.priority=TaskPriority.MEDIUM;break;
+        }
+    }
+
+    changeStatus(){
+        switch(this.status){
+            case TaskStatus.COMPLETED: this.status=TaskStatus.IN_PROGRESS;break;
+            case TaskStatus.IN_PROGRESS: this.status=TaskStatus.COMPLETED;break;
+            case TaskStatus.PENDING: this.status=TaskStatus.IN_PROGRESS;break;
+
+        }
+    }
+
+    isExpiringSoon(): boolean {
+        const now = new Date();
+        const diff = this.fechaExpiracion.getTime() - now.getTime();
+        return diff > 0 && diff <= 3 * 24 * 60 * 60 * 1000; 
+    }
+
+    isExpired(): boolean {
+        const now = new Date();
+        return now > this.fechaExpiracion;
+    }
 }
