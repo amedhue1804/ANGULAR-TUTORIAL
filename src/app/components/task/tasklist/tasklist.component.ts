@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task, TaskPriority, TaskStatus } from '../../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskresumeComponent } from "../taskresume/resume.component";
+import { TaskEvent } from '../../../models/taskEvent.model';
 @Component({
   selector: 'app-tasklist',
   standalone: true,
@@ -24,6 +25,19 @@ export class TaskListComponent {
   ];
   TaskPriority = TaskPriority;
   TaskStatus = TaskStatus;
+
+  modifyTask(taskevent: TaskEvent){
+    switch(taskevent.action){
+      case "increasePriority": this.increasePriority(taskevent.taskId); break;
+      case "decreasePriority": this.decreasePriority(taskevent.taskId); break;
+      case "startTask": this.startTask(taskevent.taskId); break;
+      case "completeTask": this.completeTask(taskevent.taskId); break;
+      case "resetTask": this.resetTask(taskevent.taskId); break;
+      case "editTask": this.editTask(taskevent.taskId); break;
+      case "deleteTask": this.deleteTask(taskevent.taskId); break;
+    }
+  }
+
   increasePriority(task: any) {
     if (task.priority === TaskPriority.LOW) task.priority = TaskPriority.MEDIUM;
     else if (task.priority === TaskPriority.MEDIUM) task.priority = TaskPriority.HIGH;

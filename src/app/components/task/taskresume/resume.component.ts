@@ -20,32 +20,32 @@ taskinput :Task = new Task(1, "Implementar autenticación", "Configurar autentic
 eventTaskModify = new EventEmitter<TaskEvent>
 
 increasePriority(task: any) {
- this.eventTaskModify.emit(new TaskEvent("increasePriority", task.id))
+ this.eventTaskModify.emit(new TaskEvent("increasePriority", task))
 }
 
 decreasePriority(task: any) {
-  this.eventTaskModify.emit(new TaskEvent("decreasePriority", task.id))
+  this.eventTaskModify.emit(new TaskEvent("decreasePriority", task))
 
 }
 
 startTask(task: any) {
-  this.eventTaskModify.emit(new TaskEvent("startTask", task.id))
+  this.eventTaskModify.emit(new TaskEvent("startTask", task))
 
 }
 
 completeTask(task: any) {
-  this.eventTaskModify.emit(new TaskEvent("completeTask", task.id))
+  this.eventTaskModify.emit(new TaskEvent("completeTask", task))
 }
 
 resetTask(task: any) {
-  this.eventTaskModify.emit(new TaskEvent("completeTask", task.id))
+  this.eventTaskModify.emit(new TaskEvent("completeTask", task))
 }
 editTask(task: any) {
-  console.log('Editando tarea', task);
+  this.eventTaskModify.emit(new TaskEvent("editTask", task))
 }
 
 deleteTask(task: any) {
-  task.isDelete = true; 
+  this.eventTaskModify.emit(new TaskEvent("deleteTask", task))
 }
 
 }
