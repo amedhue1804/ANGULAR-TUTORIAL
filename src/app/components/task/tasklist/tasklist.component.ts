@@ -3,10 +3,13 @@ import { Task, TaskPriority, TaskStatus } from '../../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskresumeComponent } from "../taskresume/resume.component";
 import { TaskEvent } from '../../../models/taskEvent.model';
+import { TaskformComponent } from '../taskform/taskform.component';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-tasklist',
   standalone: true,
-  imports: [CommonModule, TaskresumeComponent],
+  imports: [CommonModule, TaskresumeComponent,TaskformComponent,FormsModule],
   templateUrl: './tasklist.component.html',
   styleUrl: './tasklist.component.css'
 })
