@@ -28,7 +28,7 @@ export class TaskListComponent {
   ];
   TaskPriority = TaskPriority;
   TaskStatus = TaskStatus;
-
+  taskToEdit: Task | null = null;
   modifyTask(taskevent: TaskEvent){
     switch(taskevent.action){
       case "increasePriority": this.increasePriority(taskevent.taskId); break;
@@ -69,4 +69,13 @@ export class TaskListComponent {
   deleteTask(task: any) {
     task.isDelete = true; 
   }
+  onTaskCreated(task: Task): void {
+    console.log('Task received from child:', task);
+    const index = this.taskList.findIndex(t => t.id === task.id);
+    if (index !== -1) {
+      this.taskList[index] = task; 
+    } else {
+      this.taskList.push(task); 
+    this.taskToEdit = null; 
+  }}
 }
