@@ -1,21 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <app-taskform [taskToEdit]="taskToEdit" (taskCreated)="onTaskCreated($event)"></app-taskform>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Listado de Tareas</h3>
-    </div>
-    <div class="col-md-12">
-      
-      <ng-container *ngFor="let task of taskList">
-        <app-taskresume *ngIf="task.isDelete != true" [taskinput]="task" (eventTaskModify)="modifyTask($event)"
-        
-        ></app-taskresume>
-      </ng-container>
+    <app-taskform
+      [taskToEdit]="taskToEdit"
+      (saveTask)="saveTask($event)"
+      (addTask)="addNewTask($event)"/>
 
-    </div>
+      <div class="col-md-12">
+          <ng-container class="ng-container" *ngFor="let tarea of tasklist ">
+              <app-resume [task]="tarea" (eventTaskModify)="modifyTask($event)" (editTask)="setTaskToEdit($event)" />
+          </ng-container>
+
+      </div>
   </div>
+
 </div>

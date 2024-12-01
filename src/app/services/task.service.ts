@@ -28,16 +28,16 @@ export class TaskService {
   saveTask(updatedTask: Task) {
     const index = this.tasklist.findIndex(task => task.id === updatedTask.id);
     if (index > -1) {
-      this.tasklist[index] = updatedTask; // Reemplazar la tarea existente
+      this.tasklist[index] = updatedTask; 
     }
-    this.taskToEdit = null; // Limpiar el modo de edición
+    this.taskToEdit = null; 
   }
 
-  taskToEdit: Task | null = null; // Tarea actualmente en edición
+  taskToEdit: Task | null = null;
 
 
   setTaskToEdit(task: Task) {
-    this.taskToEdit = task; // Asignar la tarea seleccionada al formulario
+    this.taskToEdit = task; 
   }
 
 
